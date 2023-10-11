@@ -6,11 +6,11 @@ export const ListadoPlatillosPage = () => {
 
   useEffect(() => {
     // Hacer el fetch para obtener las categorias:
-    const url = `./categorias.json`;
+    const url = `http://localhost:3000/categorias`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => setCategorias(data));
-  }, [categorias]);
+  }, []);
 
   return (
     <>
@@ -19,7 +19,7 @@ export const ListadoPlatillosPage = () => {
 
         {/* Iterrar por cada categoria */}
         {categorias.map((categoria) => {
-          return <Categoria key={categoria.id} categoria={categoria.nombre} />;
+          return <Categoria key={categoria.id} categoria={categoria} />;
         })}
         
       </div>
