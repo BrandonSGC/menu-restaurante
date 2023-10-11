@@ -4,12 +4,12 @@ export const NavBar = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className="display">
-          <h1 className="logo">Restaurante</h1>
-          <nav>
-            <Link to="/">Listado de Platillos</Link>
-            <Link to="/platillos">Administración de Platillos</Link>
-            <Link to="/categorias">Administración de Caregorías</Link>
+        <div className="header__display">
+          <h1 className="header__logo">Restaurante</h1>
+          <nav className='header__nav'>
+            <Link className='header__link' to="/">Listado de Platillos</Link>
+            <Link className='header__link' to="/platillos">Administración de Platillos</Link>
+            <Link className='header__link' to="/categorias">Administración de Caregorías</Link>
           </nav>
         </div>
       </div>

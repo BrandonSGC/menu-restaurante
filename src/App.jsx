@@ -20,7 +20,6 @@ export const App = () => {
         {/* Ruta por defecto */}
         <Route path="/*" element={<Navigate to="/"/>}/>
       </Routes>
-      <h3>Esto seria el footer</h3>
     </>
   );
 };

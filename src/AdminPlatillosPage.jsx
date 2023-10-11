@@ -1,6 +1,9 @@
 
 export const AdminPlatillosPage = () => {
   return (
-    <h1>Administración de Platillos</h1>  
+    <div className="container">
+      <h1 className="heading">Administración de Platillos</h1>  
+    </div>
+    
   )
 }

@@ -1,51 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Platillo } from "./Platillo";
 
 export const Categoria = ({categoria}) => {
 
-  const platillos = [
-    {
-      "id": 1,
-      "nombre": "Ensalada César",
-      "costo": 8.99,
-      "categoria_id": 1,
-      "activo": true
-    },
-    {
-      "id": 2,
-      "nombre": "Pasta Alfredo",
-      "costo": 12.99,
-      "categoria_id": 2,
-      "activo": true
-    },
-    {
-      "id": 3,
-      "nombre": "Tarta de Manzana",
-      "costo": 5.99,
-      "categoria_id": 3,
-      "activo": true
-    },
-    {
-      "id": 4,
-      "nombre": "Sopa de Tomate",
-      "costo": 6.99,
-      "categoria_id": 1,
-      "activo": true
-    }
-  ];
+  const [platillos, setPlatillos] = useState([]);
+
+  useEffect(() => {
+    // Hacer el fetch a los platillos de la categoria con tal id...
+    // Ejemplo de url: http://localhost:3000/platillos
+    const url = `./platillos.json`
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setPlatillos(data))
+  }, [])
 
   return (
     <>
       <div>
-        <h2>{categoria}</h2>
+        <h2 className="categoria">{categoria}</h2>
 
         {/* Lista de Platillos */}
-        <ul>
+        <ul className="listaPlatillos">
           {platillos.map( (platillo) => {
             return <Platillo key={platillo.id} id={platillo.id} nombre={platillo.nombre} costo={platillo.costo}/>
           })}
         </ul>
-
+        <hr />
       </div>
     </>
   );
