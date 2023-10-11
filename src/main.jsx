@@ -1,11 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './normalize.css'
-import './styles.css'
-import { App } from './App'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./normalize.css";
+import "./styles.css";
+import { App } from "./App";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  // <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
-)
+  </BrowserRouter>
+  // </React.StrictMode>,
+);
