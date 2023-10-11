@@ -1,45 +1,26 @@
-import { Categoria } from "./components/Categoria";
-
-
+import { NavBar } from "./components/NavBar";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ListadoPlatillosPage } from "./ListadoPlatillosPage";
+import { AdminPlatillosPage } from './AdminPlatillosPage';
+import { AdminCategoriasPage } from './AdminCategoriasPage';
 
 export const App = () => {
-  const categorias = [
-    {
-      "id": 1,
-      "nombre": "Entradas"
-    },
-    {
-      "id": 2,
-      "nombre": "Platos Principales"
-    },
-    {
-      "id": 3,
-      "nombre": "Postres"
-    }
-  ];
-
-
-
+  
   return (
     <>
-      <h1>Listado de Platillos</h1>
-      <p>Ordenados por categoría:</p>
-      <button>Crear Platillo</button>
-      {/* Iterrar por cada categoria */}
-      {categorias.map( (categoria) => {
-        return <Categoria key={categoria.id} categoria={categoria.nombre}/>
-      })}
+      {/* Lo que este fuera de las rutas siempre se va a mostrar en las pantallas */}
+      <NavBar />
+      <hr />
 
-      {/* <Categoria categoria="Pastas"/>
-      <Categoria categoria="Mariscos"/> */}
+      <Routes>
+        <Route path="/" element={<ListadoPlatillosPage />}/>
+        <Route path="/platillos" element={<AdminPlatillosPage />}/>
+        <Route path="/categorias" element={<AdminCategoriasPage />}/>
 
-      <p id="mensaje">Mensaje de prueba</p>
-
-      <div>
-        <button>
-          Ir a Administración de Categorías
-        </button>
-      </div>
+        {/* Ruta por defecto */}
+        <Route path="/*" element={<Navigate to="/"/>}/>
+      </Routes>
+      <h3>Esto seria el footer</h3>
     </>
   );
 };
