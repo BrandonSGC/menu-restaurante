@@ -7,16 +7,17 @@ export const ModalCrearPlatillo = ({
   platillo,
   isEditing,
 }) => {
-  const [nombre, setNombre] = useState("");
-  const [costo, setCosto] = useState("");
-  const [categoria, setCategoria] = useState("");
-
   const [editData, setEditData] = useState({
     id: "",
     nombre: "",
     costo: "",
     categoria_id: "",
   });
+
+  const [nombre, setNombre] = useState(isEditing ? editData.nombre : "");
+  const [costo, setCosto] = useState(isEditing ? editData.costo : "");
+  const [categoria, setCategoria] = useState(isEditing ? editData.categoria_id : "");
+
 
   useEffect(() => {
     // Si se proporciona un platillo, establece sus datos en editData
@@ -35,32 +36,27 @@ export const ModalCrearPlatillo = ({
   };
 
   const handleAcept = () => {
+    if (isEditing) {
+      editarPlatillo(editData.id, editData);
+      alert('Se ha editado correctamente');
+      setIsModalOpen(false);
+      return;
+    }
     if (nombre.trim() === "" || isNaN(parseFloat(costo)) || categoria === "") {
       alert("Por favor, complete todos los campos correctamente.");
     } else {
-      if (isEditing) {
-        const newData = {
-          nombre: nombre,
-          costo: costo,
-          categoria_id: categoria,
-        };
-        console.log(
-          `Editando datos de platillo con id: ${platillo.id} con los nuevos datos:`
-        );
-        console.log(newData);
-        //editarPlatillo(platillo.id, newData)
-      } else {
-        const data = {
-          nombre: nombre,
-          costo: costo,
-          categoria_id: categoria,
-          activo: true,
-        };
-        crearPlatillo(data);
-      }
+      const data = {
+        nombre: nombre,
+        costo: costo,
+        categoria_id: categoria,
+        activo: true,
+      };
+      crearPlatillo(data);
+      console.log('Creando platillo...')
       setIsModalOpen(false);
-    }
+    } 
   };
+
 
   return (
     <section className={`modal ${isOpen ? "modal--show" : ""}`}>
