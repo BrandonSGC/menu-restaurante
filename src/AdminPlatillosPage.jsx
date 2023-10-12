@@ -31,7 +31,7 @@ export const AdminPlatillosPage = () => {
           return <Categoria key={categoria.id} categoria={categoria} isAdmin/>;
         })}
         
-        <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} />
+        <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} categorias={categorias}/>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ModalCrearPlatillo = ({ onClose, onSave, isOpen, setIsModalOpen }) => {
+export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias }) => {
   const [nombre, setNombre] = useState("");
   const [costo, setCosto] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -13,16 +13,18 @@ export const ModalCrearPlatillo = ({ onClose, onSave, isOpen, setIsModalOpen }) 
     // Validar los datos antes de guardar
     if (nombre.trim() === "" || isNaN(parseFloat(costo)) || categoria === "") {
       alert("Por favor, complete todos los campos correctamente.");
-    } else {
-      // Guardar los datos del nuevo platillo
-      onSave({
-        nombre,
-        costo: parseFloat(costo),
-        categoria,
-      });
 
-      // Cerrar el modal
-      onClose();
+    } else {
+      const data = {
+        nombre: nombre,
+        costo: costo,
+        categoria_id: categoria,
+        activo: true,
+      };
+      
+      crearPlatillo(data);
+
+      setIsModalOpen(false);
     }
   };
 
@@ -63,9 +65,10 @@ export const ModalCrearPlatillo = ({ onClose, onSave, isOpen, setIsModalOpen }) 
           onChange={(e) => setCategoria(e.target.value)}
         >
           <option value="">Seleccione una categoría</option>
-          <option value="Entrada">Entrada</option>
-          <option value="Plato Principal">Plato Principal</option>
-          <option value="Postre">Postre</option>
+          {/* Cargar select con categorias */}
+          {categorias.map( (categoria) => {
+            return <option key={categoria.id} value={categoria.id}>{categoria.nombre}</option>
+          })}
         </select>
 
         <div className="modal__buttons">
@@ -79,4 +82,30 @@ export const ModalCrearPlatillo = ({ onClose, onSave, isOpen, setIsModalOpen }) 
       </div>
     </section>
   );
+};
+
+// Funciones
+const crearPlatillo = (platillo) => {
+  const url = `http://localhost:3000/platillos`;
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(platillo)
+  })
+    .then((response) => {
+      if (response.status === 201) {
+        console.log("Platillo creado con éxito.");
+        alert("Platillo creado con éxito.");
+
+      } else {
+        console.error("Error al crear el platillo.");
+        alert("Error al crear el platillo.");
+      }
+    })
+    .catch((error) => {
+      console.error("Se ha producido un error:", error);
+      alert("Se ha producido un error:", error);
+    });
 };
