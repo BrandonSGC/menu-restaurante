@@ -209,3 +209,47 @@ p span {
   color: #F26250;
   background-color: #fff;
 }
+
+
+/* Modal Crear Platillo */
+.fieldset {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  gap: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  width: 100%;
+}
+
+.label {
+  text-align: left;
+}
+
+.input {
+  background-color: var(--blanco);
+  color: var(--primarioOscuro);
+  border: none;
+  border-radius: .7rem;
+  outline: none;
+  padding: 1rem .6rem;
+  transition: .4s;
+  width: 100%;
+  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 .15vw skyblue;
+}
