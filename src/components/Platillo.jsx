@@ -2,22 +2,25 @@ import { useState } from "react";
 import { Modal } from "./Modal";
 import { ModalCrearPlatillo } from "./ModalCrearPlatillo";
 
-export const Platillo = ({ platillo, isAdmin }) => {
+export const Platillo = ({ platillo, isAdmin, categorias }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [isModalCPOpen, setIsModalCPOpen] = useState(false);
 
-  const [userId, setUserId] = useState(null);
+  const [platilloId, setPlatilloId] = useState(null);
+
 
   const onActivate = (id, status) => {
     actualzarEstadoPlatillo(id, status);
   };
 
-  const onEdit = (id) => {
+  const onEdit = (platillo) => {
 
+    setIsModalCPOpen(true);
   };
   
+  
   const onDelete = async (id) => {
-    setUserId(id);
+    setPlatilloId(id);
     setIsModalOpen(true);
   };
 
@@ -43,21 +46,19 @@ export const Platillo = ({ platillo, isAdmin }) => {
             <button className="button" onClick={() => onActivate(platillo.id, 0)}>
               Inactivar
             </button>
-            <button className="button" onClick={() => onEdit(platillo.id)}>
+            <button className="button" onClick={onEdit}>
               Editar
             </button>
             <button className="button" onClick={() => onDelete(platillo.id)}>
               Borrar
             </button>
+            <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} platilloId={platilloId}/>
+            <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} platillo={platillo} categorias={categorias} />
           </div>
         ) : (
           ""
         )}
       </li>
-      
-      
-      <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} userId={userId}/>
-
     </>
   );
 };

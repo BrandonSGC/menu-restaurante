@@ -1,8 +1,8 @@
-export const Modal = ({ isOpen, setIsModalOpen, userId }) => {
+export const Modal = ({ isOpen, setIsModalOpen, platilloId }) => {
   
   const handleAcept = () => {
     setIsModalOpen(false);
-    eliminarPlatillo(userId);
+    eliminarPlatillo(platilloId);
   }
 
   const handleCancel = () => {

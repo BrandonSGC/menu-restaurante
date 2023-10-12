@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Platillo } from "./Platillo";
 
-export const Categoria = ({categoria, isAdmin}) => {
+export const Categoria = ({categoria, isAdmin, categorias}) => {
   const {id, nombre} = categoria;
   const [platillos, setPlatillos] = useState([]);
 
@@ -30,7 +30,7 @@ export const Categoria = ({categoria, isAdmin}) => {
                   <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin} />
                 );
               } else if (isAdmin) {
-                return <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin} />
+                return <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin} categorias={categorias} />
               }
             } else {
               return

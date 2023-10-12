@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias }) => {
+export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias, platillo }) => {
   const [nombre, setNombre] = useState("");
   const [costo, setCosto] = useState("");
   const [categoria, setCategoria] = useState("");
+
+  const [editData, setEditData] = useState({
+    nombre: "",
+    costo: "",
+    categoria_id: "",
+  });
+  
+  useEffect(() => {
+    // Si se proporciona un platillo, establece sus datos en editData
+    if (platillo) {
+      setEditData({
+        nombre: platillo.nombre,
+        costo: platillo.costo,
+        categoria_id: platillo.categoria_id,
+      });
+    }
+  }, [platillo]);
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -40,7 +57,7 @@ export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias }) => {
             <input
               className="input"
               type="text"
-              value={nombre}
+              value={editData.nombre}
               onChange={(e) => setNombre(e.target.value)}
               maxLength={100}
             />
@@ -51,7 +68,7 @@ export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias }) => {
             <input
               className="input"
               type="number"
-              value={costo}
+              value={editData.costo}
               onChange={(e) => setCosto(e.target.value)}
               step="0.01"
             />
@@ -61,7 +78,7 @@ export const ModalCrearPlatillo = ({isOpen, setIsModalOpen, categorias }) => {
         <label>Categoría del Platillo:</label>
         <select
           className="input"
-          value={categoria}
+          value={editData.categoria_id}
           onChange={(e) => setCategoria(e.target.value)}
         >
           <option value="">Seleccione una categoría</option>

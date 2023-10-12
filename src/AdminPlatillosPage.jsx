@@ -28,7 +28,7 @@ export const AdminPlatillosPage = () => {
         
         {/* Iterrar por cada categoria */}
         {categorias.map((categoria) => {
-          return <Categoria key={categoria.id} categoria={categoria} isAdmin/>;
+          return <Categoria key={categoria.id} categoria={categoria} isAdmin categorias={categorias}/>;
         })}
         
         <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} categorias={categorias}/>
