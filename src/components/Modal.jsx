@@ -13,7 +13,7 @@ export const Modal = ({ isOpen, setIsModalOpen, userId }) => {
     <section className={`modal ${isOpen ? "modal--show" : ""}`}>
       <div className="modal__container">
         <img src="./delete.svg" className="modal__img" />
-        <p className="modal__paragraph">Seguro que quieres eliminar el platillo?</p>
+        <p className="modal__paragraph">¿Desea eliminar el platillo seleccionado?</p>
         <div className="modal__buttons">
           <button className="modal__aceptar" onClick={handleAcept}>Aceptar</button>
           <button className="modal__cancelar" onClick={handleCancel}>Cancelar</button>
@@ -23,7 +23,7 @@ export const Modal = ({ isOpen, setIsModalOpen, userId }) => {
   );
 };
 
-// Funcions
+// Functions
 const eliminarPlatillo = (id) => {
   const url = `http://localhost:3000/platillos/${id}`;
   fetch(url, {

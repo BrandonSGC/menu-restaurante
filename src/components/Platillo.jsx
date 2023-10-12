@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Modal } from "./Modal";
+import { ModalCrearPlatillo } from "./ModalCrearPlatillo";
 
 export const Platillo = ({ platillo, isAdmin }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+
   const [userId, setUserId] = useState(null);
 
-  const onActivate = (status) => {
-    
+  const onActivate = (id, status) => {
+    actualzarEstadoPlatillo(id, status);
   };
 
   const onEdit = (id) => {
@@ -34,10 +37,10 @@ export const Platillo = ({ platillo, isAdmin }) => {
         </p>
         {isAdmin ? (
           <div className="actions">
-            <button className="button" onClick={() => onActivate(1)}>
+            <button className="button" onClick={() => onActivate(platillo.id, 1)}>
               Activar
             </button>
-            <button className="button" onClick={() => onActivate(0)}>
+            <button className="button" onClick={() => onActivate(platillo.id, 0)}>
               Inactivar
             </button>
             <button className="button" onClick={() => onEdit(platillo.id)}>
@@ -51,7 +54,8 @@ export const Platillo = ({ platillo, isAdmin }) => {
           ""
         )}
       </li>
-
+      
+      
       <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} userId={userId}/>
 
     </>
@@ -59,14 +63,13 @@ export const Platillo = ({ platillo, isAdmin }) => {
 };
 
 // Functions:
-const editarPlatillo = (id, data) => {
-  const url = `http://localhost:3000/platillos/${id}`;
+const actualzarEstadoPlatillo = (id, status) => {
+  const url = `http://localhost:3000/platillos/${id}/${status}`;
   fetch(url, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(),
   })
     .then((response) => {
       if (response.status === 200) {
@@ -80,6 +83,6 @@ const editarPlatillo = (id, data) => {
     })
     .catch((error) => {
       // Maneja errores de red u otros errores
-      console.error("Error de red:", error);
+      console.error("Se ha producido un error:", error);
     });
 };
