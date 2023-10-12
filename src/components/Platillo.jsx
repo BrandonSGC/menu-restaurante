@@ -5,8 +5,8 @@ import { ModalCrearPlatillo } from "./ModalCrearPlatillo";
 export const Platillo = ({ platillo, isAdmin, categorias }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalCPOpen, setIsModalCPOpen] = useState(false);
-
   const [platilloId, setPlatilloId] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
 
   const onActivate = (id, status) => {
@@ -14,7 +14,7 @@ export const Platillo = ({ platillo, isAdmin, categorias }) => {
   };
 
   const onEdit = (platillo) => {
-
+    setIsEditing(true);
     setIsModalCPOpen(true);
   };
   
@@ -53,7 +53,7 @@ export const Platillo = ({ platillo, isAdmin, categorias }) => {
               Borrar
             </button>
             <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} platilloId={platilloId}/>
-            <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} platillo={platillo} categorias={categorias} />
+            <ModalCrearPlatillo isOpen={isModalCPOpen} setIsModalOpen={setIsModalCPOpen} platillo={platillo} categorias={categorias} isEditing/>
           </div>
         ) : (
           ""
