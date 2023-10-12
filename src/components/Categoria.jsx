@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Platillo } from "./Platillo";
 
-export const Categoria = ({categoria}) => {
+export const Categoria = ({categoria, isAdmin}) => {
   const {id, nombre} = categoria;
   const [platillos, setPlatillos] = useState([]);
 
@@ -23,8 +23,8 @@ export const Categoria = ({categoria}) => {
         <ul className="listaPlatillos">
           {platillos.map( (platillo) => {
             // Mostrar solo los platillos de la categoria.
-            if (platillo.id === id) {
-              return <Platillo key={platillo.id} id={platillo.id} nombre={platillo.nombre} costo={platillo.costo}/>
+            if (platillo.categoria_id === id) {
+              return <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin}/>
             } else {
               return
             }
