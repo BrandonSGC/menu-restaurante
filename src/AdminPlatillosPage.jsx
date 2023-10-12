@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Categoria } from "./components/Categoria";
+import { Modal } from "./components/Modal";
 
 export const AdminPlatillosPage = () => {
   const [categorias, setCategorias] = useState([]);
@@ -24,6 +25,7 @@ export const AdminPlatillosPage = () => {
         {categorias.map((categoria) => {
           return <Categoria key={categoria.id} categoria={categoria} isAdmin/>;
         })}
+        
         
       </div>
     </>
