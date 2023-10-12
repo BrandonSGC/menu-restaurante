@@ -15,11 +15,13 @@ export const ListadoPlatillosPage = () => {
   return (
     <>
       <div className="container">
-        <h1 className="heading">Listado de Platillos</h1>
+        <header className="header__display">
+          <h1 className="heading">Listado de Platillos</h1>
+        </header>
 
         {/* Iterrar por cada categoria */}
         {categorias.map((categoria) => {
-          return <Categoria key={categoria.id} categoria={categoria} />;
+          return <Categoria key={categoria.id} categoria={categoria} isAdmin={false}/>;
         })}
         
       </div>
