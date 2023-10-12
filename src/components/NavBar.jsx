@@ -9,7 +9,7 @@ export const NavBar = () => {
           <nav className='header__nav'>
             <Link className='header__link' to="/">Listado de Platillos</Link>
             <Link className='header__link' to="/platillos">Administración de Platillos</Link>
-            <Link className='header__link' to="/categorias">Administración de Caregorías</Link>
+            <Link className='header__link' to="/categorias">Administración de Categorías</Link>
           </nav>
         </div>
       </div>
