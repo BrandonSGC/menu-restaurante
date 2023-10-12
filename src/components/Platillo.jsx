@@ -29,7 +29,7 @@ export const Platillo = ({ platillo, isAdmin }) => {
           {platillo.costo}
           {isAdmin ? (
             <>
-              ,<span> Activo:</span> {platillo.activo ? "Activo" : "Inactivo"}
+              ,<span> Estado:</span> {platillo.activo ? "Activo" : "Inactivo"}
             </>
           ) : (
             ""
@@ -73,16 +73,16 @@ const actualzarEstadoPlatillo = (id, status) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        // La solicitud se completó con éxito
         console.log("Platillo actualizado con éxito.");
-        // Aquí puedes realizar otras acciones después de actualizar el platillo
+        alert("Platillo actualizado con éxito.");
+
       } else {
-        // La solicitud no se completó con éxito, maneja el error apropiadamente
         console.error("Error al actualizar el platillo.");
+        alert("Error al actualizar el platillo.");
       }
     })
     .catch((error) => {
-      // Maneja errores de red u otros errores
       console.error("Se ha producido un error:", error);
+      alert("Se ha producido un error:", error);
     });
 };
