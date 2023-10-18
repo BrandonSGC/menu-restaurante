@@ -18,27 +18,46 @@ export const Categoria = ({categoria, isAdmin, categorias}) => {
     <>
       <div>
         <h2 className="categoria">{nombre}</h2>
-
+  
         {/* Lista de Platillos */}
         <ul className="listaPlatillos">
-          {platillos.map( (platillo) => {
-            // Mostrar solo los platillos de la categoria.
+          {platillos.map((platillo) => {
             if (platillo.categoria_id === id) {
-              // Verificar si el platillo está activo
-              if (!isAdmin && platillo.activo) {
+              if (!isAdmin) {
+                if (platillo.activo) {
+                  return (
+                    <div key={platillo.id}>
+                      <Platillo platillo={platillo} isAdmin={isAdmin} />
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={platillo.id}>
+                      <p1>Platillo no disponible</p1>
+                    </div>
+                  );
+                }
+              } else {
                 return (
-                  <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin} />
+                  <div key={platillo.id}>
+                    <Platillo platillo={platillo} isAdmin={isAdmin} categorias={categorias} />
+                  </div>
                 );
-              } else if (isAdmin) {
-                return <Platillo key={platillo.id} platillo={platillo} isAdmin={isAdmin} categorias={categorias} />
               }
-            } else {
-              return
             }
+            return null;
           })}
         </ul>
+  
+        {platillos.length === 0 && (
+          <div>
+            <p>Todavía no hay platillos disponibles</p>
+          </div>
+        )}
+  
         <hr />
       </div>
     </>
   );
+  
 };

@@ -158,6 +158,7 @@ const crearPlatillo = (platillo) => {
     });
 };
 
+
 const editarPlatillo = (id, newData) => {
   const url = `http://localhost:3000/platillos/${id}`;
   fetch(url, {
