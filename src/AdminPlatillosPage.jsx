@@ -9,7 +9,6 @@ export const AdminPlatillosPage = () => {
   const onCreatePlatillo = () => {
     setIsModalCPOpen(true);
   }
-
   useEffect(() => {
     // Hacer el fetch para obtener las categorias:
     const url = `http://localhost:3000/categorias`;

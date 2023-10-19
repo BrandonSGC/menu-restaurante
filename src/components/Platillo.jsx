@@ -18,7 +18,6 @@ export const Platillo = ({ platillo, isAdmin, categorias }) => {
     setIsModalCPOpen(true);
   };
   
-  
   const onDelete = async (id) => {
     setPlatilloId(id);
     setIsModalOpen(true);
